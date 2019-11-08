@@ -1,0 +1,33 @@
+﻿@model IEnumerable<QuasiSpecFileEditor.Models.Model>
+
+@{
+    ViewBag.Title = "Models";
+}
+
+<h2>Models</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-hover table-sm">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CodeName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CodeName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ModelID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ModelID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ModelID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,31 @@
+﻿@model QuasiSpecFileEditor.Models.User
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12 col-md-4 col-lg-3">
+            @using (Html.BeginForm("Login", "Login", FormMethod.Post, new { @id = "login-form" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-group">
+                    <label for="User.UserName">User name</label>
+                    <input name="User.UserName" type="text" class="form-control" placeholder="Username"/> 
+                </div>
+
+                <div class="form-group">
+                    <label for="User.Password">Password</label>
+                    <input name="User.Password" type="password" class="form-control" placeholder="Password" />
+                </div>
+
+                <div class="float-right">
+                    <input type="submit" class="btn btn-info" value="Login" />
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

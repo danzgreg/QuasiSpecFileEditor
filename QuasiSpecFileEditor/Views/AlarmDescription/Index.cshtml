@@ -1,0 +1,69 @@
+﻿@model IEnumerable<QuasiSpecFileEditor.Models.AlarmDescription>
+
+@{
+    ViewBag.Title = "Alarm Descriptions";
+}
+
+<h2>Alarm Descriptions</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-hover table-sm">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Alarm.AlarmName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Model.CodeName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Priority)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Criteria)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Hold)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ParameterName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TargetLimit)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Alarm.AlarmName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Model.CodeName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Priority)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Criteria)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Hold)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ParameterName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TargetLimit)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.AlarmDescriptionID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.AlarmDescriptionID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.AlarmDescriptionID })
+        </td>
+    </tr>
+}
+
+</table>

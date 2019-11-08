@@ -1,0 +1,74 @@
+﻿@model QuasiSpecFileEditor.Models.AlarmDescription
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>AlarmDescription</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Alarm.AlarmName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Alarm.AlarmName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Model.CodeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Model.CodeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Priority)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Priority)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Criteria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Criteria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hold)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hold)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ParameterName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ParameterName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TargetLimit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TargetLimit)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AlarmDescriptionID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

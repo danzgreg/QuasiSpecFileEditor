@@ -1,0 +1,34 @@
+﻿@model QuasiSpecFileEditor.ViewModels.ADUserDisplay
+@{
+    ViewBag.Title = "ADUsers";
+}
+
+<div class="container">
+    <blockquote>
+        @*<p>@Model.CurrentUserDisplayName</p>*@
+    </blockquote>
+    <div class="row">
+        <div class="col">
+            <table class="table table-sm table-bordered table-hover table-condensed">
+                <thead class="thead-dark">
+                    <tr class="thead-dark">
+                        <th>Email</th>
+                        <th>Username</th>
+                        <th>DisplayName</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in Model.ADUsers)
+                    {
+                        <tr>
+                            <td>@user.Email</td>
+                            <td>@user.UserName</td>
+                            <td>@user.DisplayName</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

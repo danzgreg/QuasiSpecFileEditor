@@ -1,0 +1,128 @@
+﻿@model QuasiSpecFileEditor.ViewModels.AlarmDescriptionDisplay
+
+<div id="alarm-form-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 id="group-tbd-title" class="modal-title">Add Group</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            @using (Html.BeginForm("CreateAlarm", "Model", FormMethod.Post, new { @id = "group-form" }))
+            {
+                <div class="modal-body">
+
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(model => model.AlarmDescription.ModelID)
+                    @*@Html.HiddenFor(model => model.Group.GroupID)*@
+
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            <label class="col-form-label-sm" for="">Alarm name</label>
+                            <div class="col-md-12">
+                                <select id="select-alarm" @*name="SelectedAlarm"*@ name="AlarmDescription.AlarmID" class="form-control" required>
+                                    @foreach (var alarm in Model.Alarms)
+                                    {
+                                        if (!Model.MyAlarms.Contains(alarm))
+                                        {
+                                            <option value='@alarm.AlarmID'>@alarm.AlarmName</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.AlarmDescription.Priority, htmlAttributes: new { @class = "col-form-label-sm" })
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.AlarmDescription.Priority, new { htmlAttributes = new { @class = "form-control", required="true" } })
+                                @Html.ValidationMessageFor(model => model.AlarmDescription.Priority, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.AlarmDescription.Criteria, htmlAttributes: new { @class = "col-form-label-sm" })
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.AlarmDescription.Criteria, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.AlarmDescription.Criteria, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.AlarmDescription.Hold, htmlAttributes: new { @class = "col-form-label-sm" })
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.AlarmDescription.Hold, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.AlarmDescription.Hold, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.AlarmDescription.ParameterName, htmlAttributes: new { @class = "col-form-label-sm" })
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.AlarmDescription.ParameterName, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.AlarmDescription.ParameterName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.AlarmDescription.TargetLimit, htmlAttributes: new { @class = "col-form-label-sm" })
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.AlarmDescription.TargetLimit, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.AlarmDescription.TargetLimit, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <input type="submit" value="Save" class="btn btn-primary">
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //$('#select-alarm').select2({
+        //    placeholder: "Select an alarm",
+        //    allowClear: true,
+        //    //dropdownAutoWidth: false,
+        //    //multiple: true,
+        //    width: '100%',
+        //    closeOnSelect: true,
+        //    scrollAfterSelect: false
+        //});
+
+        tail.select("#select-alarm", {
+            search: true,
+            searchMarked: true,
+            searchMinLength: 0,
+            //csvOutput: true,
+            //csvSeparator: ",",
+            deselect: true,
+            multiple: false,
+            multiShowCount: false,
+            multiContainer: false,
+            searchFocus: true,
+            multiSelectGroup: false,
+            multiSelectAll: false,
+            placeholder: "Select alarm",
+            hideSelected: true,
+            width: '100%'
+        });
+
+        //$('#select-parameter').select2({
+        //    placeholder: "Select part number(s)",
+        //    allowClear: true,
+        //    //dropdownAutoWidth: false,
+        //    //multiple: true,
+        //    width: '100%',
+        //    closeOnSelect: false,
+        //    scrollAfterSelect: false
+        //});
+    });
+</script>

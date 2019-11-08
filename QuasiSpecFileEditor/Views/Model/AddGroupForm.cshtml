@@ -1,0 +1,137 @@
+﻿@model QuasiSpecFileEditor.ViewModels.AddModelGroupDisplay
+
+<div id="group-form-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 id="group-tbd-title" class="modal-title">Add Group</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            @using (Html.BeginForm("CreateGroup", "Model", FormMethod.Post, new { @id="group-form", name="group-form" }))
+            {
+                <div class="modal-body">
+
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(model => model.Group.ModelID)
+                    @*@Html.HiddenFor(model => model.Group.GroupID)*@
+
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            <label class="col-form-label-sm" for="">Group Name</label>
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.Group.GroupName, new { htmlAttributes = new { @class = "form-control", required="true" } })
+                                @Html.ValidationMessageFor(model => model.Group.GroupName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-form-label-sm" for="select-part-number">Part Number(s)</label>
+                            <div class="col-md-12">
+                                <select id="select-part-number" name="SelectedParts" multiple="multiple" class="form-control">
+                                    @foreach (var part in Model.Parts)
+                                    {
+                                        <option value='@part.PartID'>@part.PN</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-form-label-sm" for="">Parameter(s)</label>
+                            <div class="col-md-12">
+                                <select id="select-parameter" name="SelectedParameters" multiple="multiple" class="form-control">
+                                    @foreach (var parameter in Model.Parameters)
+                                    {
+                                        <option value='@parameter.ParameterID'>@parameter.FieldName</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <input type="submit" value="Save" class="btn btn-primary">
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        tail.select("#select-parameter", {
+            search: true,
+            searchMarked: true,
+            searchMinLength: 0,
+            //csvOutput: true,
+            //csvSeparator: ",",
+            deselect: true,
+            multiShowCount: false,
+            multiContainer: true,
+            searchFocus: true,
+            multiSelectGroup: true,
+            multiSelectAll: true,
+            placeholder: "Select parameter(s)",
+            hideSelected: true,
+            width: '100%'
+        });
+
+        tail.select("#select-part-number", {
+            search: true,
+            searchMarked: true,
+            searchMinLength: 0,
+            //csvOutput: true,
+            //csvSeparator: ",",
+            deselect: true,
+            multiShowCount: false,
+            multiContainer: true,
+            searchFocus: true,
+            multiSelectGroup: true,
+            multiSelectAll: true,
+            placeholder: "Select part(s)",
+            hideSelected: true,
+            width: '100%'
+        });
+
+        $('#group-form').submit(function (e) {
+            e.preventDefault();
+
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("CheckGroupName")',
+                data: $('#group-form').serialize(),
+                success: function (response) {
+                    if (response) {     //group name already exist
+                        
+                        alert("Group name already exist");
+                    }
+                    else {
+
+                        $.ajax({
+                            type: "POST",
+                            url: '@Url.Action("CreateGroup")',
+                            data: $('#group-form').serialize(),
+                            success: function (response) {
+                                if (response == "error") {
+                                    alert("Error");
+                                }
+                                else {
+                                    location.reload();
+                                }
+                            },
+                            error: function (error) {
+
+                            }
+                        });
+
+                    }
+                }
+            });
+        });
+    });
+</script>

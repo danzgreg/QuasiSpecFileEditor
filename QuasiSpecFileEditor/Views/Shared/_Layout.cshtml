@@ -8,30 +8,48 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
+    <div class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+                @Html.ActionLink("Spec. File Editor", "Index", "Model", new { area = "" }, new { @class = "navbar-brand" })
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    @if (Session["session_user"] != null)
+                    {
+                        <li>@Html.ActionLink("Model", "Index", "Model", null, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Part", "Index", "Part", null, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Alarm", "Index", "Alarm", null, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Parameter", "Index", "Parameter", null, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Group", "Index", "Group", null, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Alarm Description", "Index", "AlarmDescription", null, new { @class = "nav-link" })</li>
+                    }
                 </ul>
+                @if (Session["session_user"] != null)
+                {
+                    <ul class="navbar-nav float-right">
+                        <li class="nav-link">@Session["session_user"]</li>
+                        <li>@Html.ActionLink("Logout", "Logout", "Login", null, new { @class = "nav-link" })</li>
+                    </ul>
+                }
+                else
+                {
+                    <ul class="navbar-nav float-right">
+                        <li>@Html.ActionLink("LogIn", "Login", "Login", null, new { @class = "nav-link" })</li>
+                    </ul>
+                }
             </div>
         </div>
     </div>
-    <div class="container body-content">
+    <br />
+    <div class="container-fluid body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Spec. File Editor</p>
         </footer>
     </div>
 

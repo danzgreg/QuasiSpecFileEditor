@@ -1,0 +1,98 @@
+﻿@model QuasiSpecFileEditor.Models.Parameter
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Parameter</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FieldName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FieldName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpperLimit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpperLimit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpperLimitDefect)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpperLimitDefect)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LowerLimit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LowerLimit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LowerLimitDefect)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LowerLimitDefect)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NegFactor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NegFactor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NegFactorDefect)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NegFactorDefect)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OpReqUpload)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OpReqUpload)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ParamTest)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ParamTest)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CSVHeaderName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CSVHeaderName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ParameterID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

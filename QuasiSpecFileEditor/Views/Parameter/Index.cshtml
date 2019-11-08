@@ -1,0 +1,87 @@
+﻿@model IEnumerable<QuasiSpecFileEditor.Models.Parameter>
+
+@{
+    ViewBag.Title = "Parameters";
+}
+
+<h2>Parameters</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-hover table-bordered table-sm table-condensed">
+    <tr class="thead-dark">
+        <th>
+            @Html.DisplayNameFor(model => model.FieldName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpperLimit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpperLimitDefect)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LowerLimit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LowerLimitDefect)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NegFactor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NegFactorDefect)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OpReqUpload)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ParamTest)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CSVHeaderName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FieldName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UpperLimit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UpperLimitDefect)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LowerLimit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LowerLimitDefect)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NegFactor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NegFactorDefect)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OpReqUpload)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ParamTest)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CSVHeaderName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ParameterID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ParameterID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ParameterID })
+        </td>
+    </tr>
+}
+
+</table>
